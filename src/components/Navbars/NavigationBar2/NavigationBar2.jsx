@@ -47,11 +47,11 @@ let NavigationBar = ({ toogleMenu, setToggleMenu }) => {
                                 Profile
                             </div>
                         </Link>
-                        <Link to='/user/ll/notifications' className={css.menuItemLinkTxt}>
+                        {/* <Link to='/user/ll/notifications' className={css.menuItemLinkTxt}>
                             <div className={css.menuItemLink}>
                                 Notifications
                             </div>
-                        </Link>
+                        </Link> */}
                         <Link to='/user/ll/bookmarks' className={css.menuItemLinkTxt}>
                             <div className={css.menuItemLink}>
                                 Bookmarks
@@ -62,16 +62,16 @@ let NavigationBar = ({ toogleMenu, setToggleMenu }) => {
                                 Reviews
                             </div>
                         </Link>
-                        <Link to='/user/ll/network' className={css.menuItemLinkTxt}>
+                        {/* <Link to='/user/ll/network' className={css.menuItemLinkTxt}>
                             <div className={css.menuItemLink}>
                                 Network
                             </div>
-                        </Link>
-                        <Link to='/user/ll/find-friends' className={css.menuItemLinkTxt}>
+                        </Link> */}
+                        {/* <Link to='/user/ll/find-friends' className={css.menuItemLinkTxt}>
                             <div className={css.menuItemLink}>
                                 Find Friends
                             </div>
-                        </Link>
+                        </Link> */}
                         <Link to='/user/ll/settings' className={css.menuItemLinkTxt}>
                             <div className={css.menuItemLink}>
                                 Settings

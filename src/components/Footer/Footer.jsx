@@ -65,7 +65,7 @@ let Footer = () => {
             </a>
           </div>
           <div className={[footerCss.box2, footerCss.box].join(" ")}>
-            <div className={footerCss.boxTtl}>TOMAVERSE</div>
+            <div className={footerCss.boxTtl}>ZOMAVERSE</div>
             <a href="" className={footerCss.boxOpt}>
               Zomato
             </a>
@@ -76,7 +76,7 @@ let Footer = () => {
               Hyperpure
             </a>
             <a href="" className={footerCss.boxOpt}>
-              Tomaland
+              Zomaland
             </a>
           </div>
           <div className={[footerCss.box3, footerCss.box].join(" ")}>
