@@ -1,0 +1,109 @@
+/* RestaurantList.css */
+.restaurant-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .restaurant-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Additional styling as needed */
+  .restaurant-card h2 {
+    margin-bottom: 5px;
+    font-size: 1.2em;
+  }
+  
+  .restaurant-card p {
+    font-size: 0.9em;
+    color: #666;
+  }
+
+  /* RestaurantList.css */
+
+/* Existing styles... */
+
+.restaurant-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .restaurant-card h2 {
+    margin-bottom: 5px;
+    font-size: 1.2em;
+  }
+  
+  .restaurant-card p {
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+  .image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust image width here */
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .restaurant-image {
+    width: 100%; /* Adjust image width to fit the grid column */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 3px;
+  }
+  
+  
+
+
+  /* RestaurantList.css */
+
+.restaurant-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .restaurant-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  /* RestaurantCard.css */
+  
+  .restaurant-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .restaurant-image {
+    height: 200px; /* Adjust image height */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .restaurant-info {
+    padding: 20px;
+  }
+  
+  .restaurant-info h2 {
+    margin-bottom: 5px;
+  }
+  
+  .restaurant-info p {
+    color: #666;
+  }
+  

@@ -9,13 +9,14 @@ import safeDelivery from '/icons/safe-delivery.png';
 import star from '/icons/star.png';
 
 let ShowcaseCard = (props) => {
+    // const defaultImageUrl = 'https://api.selfeey.com/restaurantsapi/restaurant_documents/659e9175dab26_10_Burger-King.png';
     const { link2, promoted, time, offB, proExtraB, off, proExtra, name, rating, imgSrc } = props;
     let link = "/" + "hyderabad/paraside/order";
     return <Link className={css.outerDiv} to={link}>
         <div className={css.innerDiv}>
             <div className={css.imgBox}>
                 {promoted && <div className={css.promoted}>Promoted</div>}
-                <img className={css.img} src={imgSrc} alt="food image" />
+                <img className={css.img}  src={imgSrc} alt="food image" />
                 {offB && <div className={css.off}>{off}% OFF</div>}
                 {proExtraB && <div className={css.offPro}>Pro extra {proExtra}% OFF</div>}
                 <div className={css.duration}>{time} min</div>
