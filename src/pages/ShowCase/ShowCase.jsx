@@ -447,10 +447,10 @@ let ShowCase = () => {
         <div className={css.w7}>
           <div className={css.innerDiv6Title}>
             {page === orderOnlinePage
-              ? "Delivery Restaurants in Gachibowli"
+              ? "Delivery Restaurants in Bangalore"
               : page === diningOutPage
-              ? "Dine-Out Restaurants in Gachibowli"
-              : "Nightlife Restaurants in Gachibowli"}
+              ? "Dine-Out Restaurants in Bangalore"
+              : "Nightlife Restaurants in Bangalore"}
           </div>
           <div className={css.innerDiv6Body}>
             {/* {items?.map((item, id) => {
