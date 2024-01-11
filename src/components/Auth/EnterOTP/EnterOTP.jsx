@@ -5,7 +5,7 @@ import closeBtn from "/images/closeBtn.jpg";
 
 import css from "./EnterOTP.module.css";
 
-const EnterOTP = ({ setModal, setLoggedIn = () => {}, setAuth = () => {}, phoneNumber }) => {
+const EnterOTP = ({ setModal, setLoggedIn = () => {}, setAuth = () => {}, phoneNumber, name }) => {
   const sendOTPUrl = "https://userpanel.selfeey.com/api.selfeey.com/all_user_api/user_otp_api.php";
 
   const [otpDigits, setOtpDigits] = useState(["", "", "", "", "", ""]);
@@ -74,6 +74,7 @@ const EnterOTP = ({ setModal, setLoggedIn = () => {}, setAuth = () => {}, phoneN
           action: 'verify_otp',
           otp: enteredOTP,
           mobile_number: phoneNumber,
+          name: name,
         }),
       };
   
