@@ -17,7 +17,7 @@ import delivery2 from "/icons/delivery2.png";
 import filtersIcon from "/icons/filter.png";
 import deliveryTimeIcon from "/icons/delivery-time.png";
 import downArrowIcon from "/icons/down-arrow.png";
-
+import Filter from "../../utils/OrderingUtils/FilterBox/filter";
 import biryaniCImg from "/icons/Food/biryaniC.png";
 import burgerImg from "/icons/Food/burger.png";
 import chickenImg from "/icons/Food/chicken.png";
@@ -54,6 +54,13 @@ let ShowCase = () => {
   let location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const page = urlParams.get("page");
+  const [isFilterPageOpen, setIsFilterPageOpen] = useState(false);
+
+  const handleFilterBoxClick = () => {
+    // Toggle the state to open/close the filter page
+    setIsFilterPageOpen(!isFilterPageOpen);
+  };
+
   // <Navbar setToggleMenu={setToggleMenu} toogleMenu={toogleMenu} />
   let [isActive, setIsActive] = useState({
     delivery: page === orderOnlinePage,
@@ -65,10 +72,11 @@ let ShowCase = () => {
   let filters = {
     delivery: [
       { text: "Filter", leftIcon: filtersIcon },
-      { text: "Delivery Time", leftIcon: deliveryTimeIcon },
-      { text: "Pure Veg" },
       { text: "Rating: 4.0+" },
-      { text: "Freate Offers" },
+      // { text: "Delivery Time", leftIcon: deliveryTimeIcon },
+      { text: "Pure Veg" },
+     
+      // { text: "Freate Offers" },
       { text: "Cuisines", leftIcon: downArrowIcon },
     ],
     // dinning: [
@@ -93,6 +101,7 @@ let ShowCase = () => {
             leftIcon={val?.leftIcon ?? null}
             rightIcon={val?.rightIcon ?? null}
             text={val.text}
+            onClick={()=>alert('opened')}
           />
         </div>
       );
@@ -305,7 +314,7 @@ let ShowCase = () => {
     <div className={css.outerDiv}>
       <NavigationBar2 />
       <div className={css.innerDiv}>
-        {/* <div className={css.breadcrumb}>
+        <div className={css.breadcrumb}>
                 Home
                 /
                 India
@@ -315,7 +324,7 @@ let ShowCase = () => {
                 Hyderabad City
                 /
                 Indira Nagar
-            </div> */}
+            </div>
       </div>
       <div className={css.showCaseDiv}>
         <div className={css.showcaseComps}>
@@ -340,7 +349,9 @@ let ShowCase = () => {
         </div>
       ) : null}
       <div className={css.innerDiv3}>
-        <div className={css.filtersDiv}>{filterBoxes}</div>
+        <div className={css.filtersDiv}>{filterBoxes}
+        
+        </div>
       </div>
       {page === orderOnlinePage ? (
         <div className={css.innerDiv4}>

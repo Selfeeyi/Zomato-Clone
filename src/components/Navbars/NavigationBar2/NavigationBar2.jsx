@@ -91,7 +91,7 @@ let NavigationBar = ({ toogleMenu, setToggleMenu }) => {
         </div>
         <div className={css.modals}>
             {auth?.login ? <Login setAuth={setAuth} setLoggedIn={setLoggedIn} /> : null}
-            {auth?.signup ? <Signup setAuth={setAuth} /> : null}
+            {auth?.signup ? <Signup setAuth={setAuth} setLoggedIn={setLoggedIn} /> : null}
         </div>
     </div>
 }
