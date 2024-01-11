@@ -95,7 +95,7 @@ let ShowCase = () => {
           restaurantId: restaurant.restaurant_id,
           imageUrl:
             images.length > 0
-              ? `https://api.selfeey.com/restaurantsapi/${images[0].file_path}`
+              ? `http://api.selfeey.com/restaurantsapi/${images[0].file_path}`
               : null,
         };
       } catch (error) {
