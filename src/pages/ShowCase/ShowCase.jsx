@@ -49,15 +49,23 @@ import {
 } from "../../helpers/constants";
 
 import css from "./ShowCase.module.css";
+import Modal from "../../components/Modal/Modal";
+
+import Cross from "../../asets/svg/Cross";
 
 let ShowCase = () => {
   let [toogleMenu, setToggleMenu] = useState(true);
+  const [modalId, setModalId] = useState(null);
+  const [val, setVal] = useState(0);
   const [restaurantImages, setRestaurantImages] = useState({});
   const [items, setItems] = useState([]);
   let location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const page = urlParams.get("page");
   const [isFilterPageOpen, setIsFilterPageOpen] = useState(false);
+  const [createModal, setCreateModal] = useState(false);
+
+  const modalData = ["Sort By", "Cuisines", "Rating"];
 
   const handleFilterBoxClick = () => {
     // Toggle the state to open/close the filter page
@@ -134,7 +142,7 @@ let ShowCase = () => {
       { text: "Rating: 4.0+" },
       // { text: "Delivery Time", leftIcon: deliveryTimeIcon },
       { text: "Pure Veg" },
-     
+
       // { text: "Freate Offers" },
       { text: "Cuisines", leftIcon: downArrowIcon },
     ],
@@ -160,7 +168,10 @@ let ShowCase = () => {
             leftIcon={val?.leftIcon ?? null}
             rightIcon={val?.rightIcon ?? null}
             text={val.text}
-            onClick={()=>alert('opened')}
+            onClick={() => {
+              setModalId(id);
+              setCreateModal(true);
+            }}
           />
         </div>
       );
@@ -374,16 +385,8 @@ let ShowCase = () => {
       <NavigationBar2 />
       <div className={css.innerDiv}>
         <div className={css.breadcrumb}>
-                Home
-                /
-                India
-                /
-                Bengaluru
-                /
-                Bangalore City
-                /
-                Indira Nagar
-            </div>
+          Home / India / Bengaluru / Bangalore City / Indira Nagar
+        </div>
       </div>
       <div className={css.showCaseDiv}>
         <div className={css.showcaseComps}>
@@ -408,9 +411,7 @@ let ShowCase = () => {
         </div>
       ) : null}
       <div className={css.innerDiv3}>
-        <div className={css.filtersDiv}>{filterBoxes}
-        
-        </div>
+        <div className={css.filtersDiv}>{filterBoxes}</div>
       </div>
       {page === orderOnlinePage ? (
         <div className={css.innerDiv4}>
@@ -480,26 +481,182 @@ let ShowCase = () => {
                 />
               );
             })} */}
-             {items.map((restaurant) => (
-      <ShowcaseCard
-        key={restaurant.restaurant_id}
-        promoted={restaurant.promoted}
-        time={restaurant.time}
-        offB={restaurant.offB}
-        proExtraB={restaurant.proExtraB}
-        off={restaurant.off}
-        proExtra={restaurant.proExtra}
-        name={restaurant.restaurant_name}
-        rating={restaurant.rating}
-        imgSrc={restaurantImages[restaurant.restaurant_id]} // Use the image URL for imgSrc
-      />
-    ))}
-   
+            {items.map((restaurant) => (
+              <ShowcaseCard
+                key={restaurant.restaurant_id}
+                promoted={restaurant.promoted}
+                time={restaurant.time}
+                offB={restaurant.offB}
+                proExtraB={restaurant.proExtraB}
+                off={restaurant.off}
+                proExtra={restaurant.proExtra}
+                name={restaurant.restaurant_name}
+                rating={restaurant.rating}
+                imgSrc={restaurantImages[restaurant.restaurant_id]} // Use the image URL for imgSrc
+              />
+            ))}
           </div>
         </div>
       </div>
       <ExploreOptionsNearMe />
       <Footer />
+
+      <Modal isOpen={createModal} onClose={() => setCreateModal(false)}>
+        <div
+          style={{
+            paddingInline: 10,
+            display: "flex",
+            flexDirection: "column",
+            // gridTemplateColumns: "repeat(2, 1fr)",
+            gridGap: "4%",
+            // overflow: "hidden",
+            width: 700,
+            height: 600,
+            overflowY: "auto",
+            marginTop: 10,
+            marginBottom: 10,
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              paddingInline: 10,
+              margin: 0,
+
+              borderBottom: "1px solid grey",
+            }}
+          >
+            <h2>Filters</h2>
+
+            <Cross />
+          </div>
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <div style={{ flex: 1 }}>
+              {modalData.map((item, i) => (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 60,
+                    fontWeight: "600",
+                    fontSize: 18,
+                  }}
+                >
+                  <p onClick={() => setVal(i)}>{item}</p>
+                </div>
+              ))}
+            </div>
+
+            {val == 0 && (
+              <div style={{ flex: 2 }}>
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <input type="radio" />
+                  <p>Popularity</p>
+                </div>
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <input type="radio" />
+                  <p>Rating: High to Low</p>
+                </div>
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <input type="radio" />
+                  <p>Delivery Time</p>
+                </div>
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <input type="radio" />
+                  <p>Cost: Low to High</p>
+                </div>
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <input type="radio" />
+                  <p>Cost: High to Low</p>
+                </div>
+              </div>
+            )}
+            {val == 1 && (
+              <div style={{ flex: 2, marginRight: 30 }}>
+                <input
+                  type="text"
+                  placeholder="Search here"
+                  style={{
+                    border: "1px solid #CFCFCF",
+                    paddingBlock: 10,
+                    width: "100%",
+                    outline: "none",
+                    borderRadius: 10,
+                    paddingInline: 10,
+                  }}
+                />
+                <div style={{display:'flex',flexDirection:'row',gap:80}}>
+                <div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Abruzzese</p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Aegean</p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Abruzzese</p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Aegean</p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Aegean</p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Abruzzese</p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Aegean</p>
+                  </div>
+                </div>
+                <div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Abruzzese</p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Aegean</p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Abruzzese</p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Aegean</p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Aegean</p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Abruzzese</p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <input type="checkbox" />
+                    <p>Aegean</p>
+                  </div>
+                </div>
+                </div>
+             
+
+              </div>
+            )}
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

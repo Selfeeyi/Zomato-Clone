@@ -16,3 +16,10 @@
         width: 90%;
     }
 }
+
+.radioOption input[type="radio"] {
+    /* Customize the size of the radio button */
+    width: 20px;
+    height: 20px;
+    margin-right: 5px; /* Optional spacing between the radio button and label text */
+  }
