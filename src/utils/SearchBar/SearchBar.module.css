@@ -65,6 +65,7 @@
 
 .dropdownBox {
     position: absolute;
+    background-color: black;
     top: 65px;
     left: 0px;
     width: 100%;

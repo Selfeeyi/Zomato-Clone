@@ -10,6 +10,8 @@ const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showResultsModal, setShowResultsModal] = useState(false);
+  const [isDishSearch, setIsDishSearch] = useState(false);
+
 
 
   // Function to fetch search results
@@ -17,18 +19,21 @@ const SearchBar = () => {
     try {
       const response = await fetch(
         `https://api.selfeey.com/restaurantsapi/search.php?query=${encodeURIComponent(query)}`
-        // Use encodeURIComponent to properly encode the query parameter
       );
+
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        setSearchResults(data.results); // Accessing results under the 'results' key
+        setSearchResults(data.results);
+        setShowResultsModal(true); // Accessing results under the 'results' key
+        setIsDishSearch(true); // Set the flag for dish search
       } else {
         setSearchResults([]); // Resetting search results if there's an error
+        setIsDishSearch(false);
       }
     } catch (error) {
       console.error("Error fetching search results:", error);
       setSearchResults([]); // Resetting search results on error
+      setIsDishSearch(false);
     }
   };
   
@@ -94,7 +99,6 @@ const SearchBar = () => {
       setShowResultsModal(true);
     }
   };
-  
 
   const closeModal = () => {
     setShowResultsModal(false);
@@ -136,18 +140,23 @@ const SearchBar = () => {
           onChange={handleSearchChange}
         />
       </div>
-      <div className={css.dropdownBox} style={{ display: searchResults.length > 0 ? "block" : "none" }}>
+      <div className={css.dropdownBox} style={{  display: searchResults.length > 0 ? "block" : "none" , color: "black"  }}>
+  {searchResults.length > 0 && (
+    <div className={css.dropdown}>
+      {/* Render search results here */}
+      <ul className={css.searchResultsList}>
+  {searchResults.map(result => (
+    <li key={result.menu_id} onClick={() => handleResultClick(result)} style={{ listStyle: "none", padding: "10px", borderBottom: "1px solid #ddd" }}>
+      <div style={{ fontWeight: "bold", fontSize: "16px", marginBottom: "5px" }}>{result.item_name}</div>
+      <div style={{ color: "#666", fontSize: "14px", marginBottom: "5px" }}>{result.restaurant_name}</div>
+      <div style={{ color: "#888", fontSize: "12px" }}>{result.description}</div>
+    </li>
+  ))}
+</ul>
 
-        <div className={css.dropdown}>
-          {/* Render search results here */}
-          {showResultsModal && (
-            <SearchResultModal
-              searchResults={searchResults}
-              onClose={closeModal}
-            />
-          )}
-        </div>
-      </div>
+    </div>
+  )}
+</div>
     </div>
   );
 };

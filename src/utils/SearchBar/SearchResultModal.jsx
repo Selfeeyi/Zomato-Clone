@@ -1,7 +1,10 @@
 import React from "react";
 import css from "./SearchResultModal.module.css";
 
-const SearchResultModal = ({ searchResults, onClose }) => {
+const SearchResultModal = ({ searchResults, isDishSearch, onClose }) => {
+  console.log("Inside SearchResultModal component");
+  console.log("searchResults:", searchResults);
+  console.log("isDishSearch:", isDishSearch);
   return (
     <div className={css.modalBackdrop} onClick={onClose}>
       <div className={css.modalContent} onClick={(e) => e.stopPropagation()}>
@@ -12,7 +15,16 @@ const SearchResultModal = ({ searchResults, onClose }) => {
         <div className={css.modalBody}>
           {searchResults.map((result) => (
             <div key={result.menu_id}>
-              <p>{result.item_name} - {result.restaurant_name}</p>
+              <p>
+                {isDishSearch ? (
+                  <>
+                    <span>{result.item_name} - </span>
+                    <span>{result.restaurant_name}</span>
+                  </>
+                ) : (
+                  <span>{result.restaurant_name}</span>
+                )}
+              </p>
               {/* Render other details as needed */}
             </div>
           ))}
