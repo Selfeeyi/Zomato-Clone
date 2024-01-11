@@ -378,9 +378,9 @@ let ShowCase = () => {
                 /
                 India
                 /
-                Hyderabad
+                Bengaluru
                 /
-                Hyderabad City
+                Bangalore City
                 /
                 Indira Nagar
             </div>
