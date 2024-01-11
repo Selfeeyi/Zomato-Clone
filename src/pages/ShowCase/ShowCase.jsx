@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import defaultImageUrl from "../../utils/Cards/ShowcaseCard/ShowcaseCard";
 
 import Collections from "../../components/HomeComponents/Collections/Collections";
 
@@ -51,6 +52,8 @@ import css from "./ShowCase.module.css";
 
 let ShowCase = () => {
   let [toogleMenu, setToggleMenu] = useState(true);
+  const [restaurantImages, setRestaurantImages] = useState({});
+  const [items, setItems] = useState([]);
   let location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const page = urlParams.get("page");
@@ -62,6 +65,62 @@ let ShowCase = () => {
   };
 
   // <Navbar setToggleMenu={setToggleMenu} toogleMenu={toogleMenu} />
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://userpanel.selfeey.com/api.selfeey.com/restaurantsapi/getrestaurantlist.php"
+        );
+        const data = await response.json();
+        setItems(data);
+        fetchRestaurantImages(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const fetchRestaurantImages = async (restaurants) => {
+    const imagePromises = restaurants.map(async (restaurant) => {
+      try {
+        const response = await fetch(
+          `https://userpanel.selfeey.com/api.selfeey.com/newapi.php?restaurant_id=${restaurant.restaurant_id}`
+        );
+        const images = await response.json();
+
+        return {
+          restaurantId: restaurant.restaurant_id,
+          imageUrl:
+            images.length > 0
+              ? `https://api.selfeey.com/restaurantsapi/${images[0].file_path}`
+              : null,
+        };
+      } catch (error) {
+        console.error("Error fetching images for restaurant:", error);
+        return {
+          restaurantId: restaurant.restaurant_id,
+          imageUrl: null,
+        };
+      }
+    });
+
+    try {
+      const imageData = await Promise.all(imagePromises);
+
+      const imagesObj = {};
+      imageData.forEach(({ restaurantId, imageUrl }) => {
+        imagesObj[restaurantId] = imageUrl;
+      });
+      setRestaurantImages(imagesObj);
+      console.log(imagesObj); // Log imagesObj here to see the retrieved image URLs
+    } catch (error) {
+      console.error("Error processing image data:", error);
+    }
+  };
+
   let [isActive, setIsActive] = useState({
     delivery: page === orderOnlinePage,
     dinning: page === diningOutPage,
@@ -208,107 +267,107 @@ let ShowCase = () => {
     },
   ];
 
-  const items = [
-    {
-      promoted: true,
-      time: "25",
-      offB: true,
-      proExtraB: false,
-      off: "30",
-      proExtra: "40",
-      name: "Paradise Hotel",
-      rating: "3.6",
-      imgSrc: biryaniSCImg,
-    },
-    {
-      promoted: false,
-      time: "25",
-      offB: true,
-      proExtraB: false,
-      off: "30",
-      proExtra: "40",
-      name: "Mangal Hotel",
-      rating: "2.6",
-      imgSrc: biryaniSCImg2,
-    },
-    {
-      promoted: true,
-      time: "30",
-      offB: false,
-      proExtraB: true,
-      off: "30",
-      proExtra: "40",
-      name: "Chapathi Hotel",
-      rating: "4.6",
-      imgSrc: chapathiImg,
-    },
-    {
-      promoted: false,
-      time: "25",
-      offB: true,
-      proExtraB: false,
-      off: "30",
-      proExtra: "40",
-      name: "Fish Mandi Hotel",
-      rating: "4.9",
-      imgSrc: fishImg,
-    },
-    {
-      promoted: true,
-      time: "25",
-      offB: false,
-      proExtraB: true,
-      off: "30",
-      proExtra: "40",
-      name: "MangalCaptain Hotel",
-      rating: "4.6",
-      imgSrc: icecreamImg,
-    },
-    {
-      promoted: false,
-      time: "25",
-      offB: true,
-      proExtraB: false,
-      off: "30",
-      proExtra: "40",
-      name: "KFCS Hotel",
-      rating: "2.8",
-      imgSrc: kfcSCImg,
-    },
-    {
-      promoted: true,
-      time: "25",
-      offB: true,
-      proExtraB: false,
-      off: "30",
-      proExtra: "40",
-      name: "Pizza Hotel",
-      rating: "3.2",
-      imgSrc: pizzaSCImg,
-    },
-    {
-      promoted: false,
-      time: "25",
-      offB: true,
-      proExtraB: false,
-      off: "30",
-      proExtra: "40",
-      name: "Fish Mandi Hotel",
-      rating: "4.6",
-      imgSrc: fishImg,
-    },
-    {
-      promoted: true,
-      time: "25",
-      offB: false,
-      proExtraB: true,
-      off: "30",
-      proExtra: "40",
-      name: "MangalCaptain Hotel",
-      rating: "2.6",
-      imgSrc: icecreamImg,
-    },
-  ];
+  // const items = [
+  //   {
+  //     promoted: true,
+  //     time: "25",
+  //     offB: true,
+  //     proExtraB: false,
+  //     off: "30",
+  //     proExtra: "40",
+  //     name: "Paradise Hotel",
+  //     rating: "3.6",
+  //     imgSrc: biryaniSCImg,
+  //   },
+  //   {
+  //     promoted: false,
+  //     time: "25",
+  //     offB: true,
+  //     proExtraB: false,
+  //     off: "30",
+  //     proExtra: "40",
+  //     name: "Mangal Hotel",
+  //     rating: "2.6",
+  //     imgSrc: biryaniSCImg2,
+  //   },
+  //   {
+  //     promoted: true,
+  //     time: "30",
+  //     offB: false,
+  //     proExtraB: true,
+  //     off: "30",
+  //     proExtra: "40",
+  //     name: "Chapathi Hotel",
+  //     rating: "4.6",
+  //     imgSrc: chapathiImg,
+  //   },
+  //   {
+  //     promoted: false,
+  //     time: "25",
+  //     offB: true,
+  //     proExtraB: false,
+  //     off: "30",
+  //     proExtra: "40",
+  //     name: "Fish Mandi Hotel",
+  //     rating: "4.9",
+  //     imgSrc: fishImg,
+  //   },
+  //   {
+  //     promoted: true,
+  //     time: "25",
+  //     offB: false,
+  //     proExtraB: true,
+  //     off: "30",
+  //     proExtra: "40",
+  //     name: "MangalCaptain Hotel",
+  //     rating: "4.6",
+  //     imgSrc: icecreamImg,
+  //   },
+  //   {
+  //     promoted: false,
+  //     time: "25",
+  //     offB: true,
+  //     proExtraB: false,
+  //     off: "30",
+  //     proExtra: "40",
+  //     name: "KFCS Hotel",
+  //     rating: "2.8",
+  //     imgSrc: kfcSCImg,
+  //   },
+  //   {
+  //     promoted: true,
+  //     time: "25",
+  //     offB: true,
+  //     proExtraB: false,
+  //     off: "30",
+  //     proExtra: "40",
+  //     name: "Pizza Hotel",
+  //     rating: "3.2",
+  //     imgSrc: pizzaSCImg,
+  //   },
+  //   {
+  //     promoted: false,
+  //     time: "25",
+  //     offB: true,
+  //     proExtraB: false,
+  //     off: "30",
+  //     proExtra: "40",
+  //     name: "Fish Mandi Hotel",
+  //     rating: "4.6",
+  //     imgSrc: fishImg,
+  //   },
+  //   {
+  //     promoted: true,
+  //     time: "25",
+  //     offB: false,
+  //     proExtraB: true,
+  //     off: "30",
+  //     proExtra: "40",
+  //     name: "MangalCaptain Hotel",
+  //     rating: "2.6",
+  //     imgSrc: icecreamImg,
+  //   },
+  // ];
 
   return (
     <div className={css.outerDiv}>
@@ -405,7 +464,7 @@ let ShowCase = () => {
               : "Nightlife Restaurants in Gachibowli"}
           </div>
           <div className={css.innerDiv6Body}>
-            {items?.map((item, id) => {
+            {/* {items?.map((item, id) => {
               return (
                 <ShowcaseCard
                   key={id}
@@ -415,12 +474,27 @@ let ShowCase = () => {
                   proExtraB={item.proExtraB}
                   off={item.off}
                   proExtra={item.proExtra}
-                  name={item.name}
+                  name={item.restaurant_name}
                   rating={item.rating}
-                  imgSrc={item.imgSrc}
+                  imgSrc={item.imagesObj} // Ensure item.imageUrl holds the correct image URL
                 />
               );
-            })}
+            })} */}
+             {items.map((restaurant) => (
+      <ShowcaseCard
+        key={restaurant.restaurant_id}
+        promoted={restaurant.promoted}
+        time={restaurant.time}
+        offB={restaurant.offB}
+        proExtraB={restaurant.proExtraB}
+        off={restaurant.off}
+        proExtra={restaurant.proExtra}
+        name={restaurant.restaurant_name}
+        rating={restaurant.rating}
+        imgSrc={restaurantImages[restaurant.restaurant_id]} // Use the image URL for imgSrc
+      />
+    ))}
+   
           </div>
         </div>
       </div>

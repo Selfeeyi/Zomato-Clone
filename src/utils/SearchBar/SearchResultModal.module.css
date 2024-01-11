@@ -1,0 +1,51 @@
+/* SearchResultModal.module.css */
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalContent {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 80%;
+    width: 600px;
+    max-height: 80%;
+    overflow-y: auto;
+  }
+  
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .modalHeader h2 {
+    margin: 0;
+  }
+  
+  .modalHeader button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .modalHeader button:hover {
+    color: #000;
+  }
+  
+  .modalBody {
+    /* Style the content inside the modal body if needed */
+  }
+  

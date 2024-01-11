@@ -15,6 +15,7 @@ import TestPage from './pages/TestPage/TestPage'
 // import AddRestaurantHeader from './components/AddRestaurantHeader/AddRestaurantHeader'
 import App from './App'
 import './index.css'
+import RestaurantList from './components/Map/RestaurantList'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -34,7 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path="/:city/:hotel" element={<RestaurantPage />} />
       <Route path="/:city/:hotel/:page" element={<RestaurantPage />} />
       <Route path="/test" element={<TestPage />} />
-      <Route path="*" element={<ErrorPage />} />
+      <Route path="*" element={<RestaurantList />} />
     </Routes>
   </BrowserRouter>
 )
