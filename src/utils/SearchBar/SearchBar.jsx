@@ -149,7 +149,7 @@ const SearchBar = () => {
     <li key={result.menu_id} onClick={() => handleResultClick(result)} style={{ listStyle: "none", padding: "10px", borderBottom: "1px solid #ddd" }}>
       <div style={{ fontWeight: "bold", fontSize: "16px", marginBottom: "5px" }}>{result.item_name}</div>
       <div style={{ color: "#666", fontSize: "14px", marginBottom: "5px" }}>{result.restaurant_name}</div>
-      <div style={{ color: "#888", fontSize: "12px" }}>{result.description}</div>
+      <div style={{ color: "#888", fontSize: "12px" }}>{result.description} <br/> Price : {result.price}</div>
     </li>
   ))}
 </ul>
