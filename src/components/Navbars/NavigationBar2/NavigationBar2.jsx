@@ -8,7 +8,7 @@ import profilePic from '/images/profilepic.jpg'
 import Login from '../../Auth/Login/Login'
 import Signup from '../../Auth/Signup/Signup'
 import SearchBar from '../../../utils/SearchBar/SearchBar'
-
+import logo from '../../../asets/images/tedeeysmall.png'
 import css from './NavigationBar2.module.css';
 
 let NavigationBar = ({ toogleMenu, setToggleMenu }) => {
@@ -25,25 +25,26 @@ let NavigationBar = ({ toogleMenu, setToggleMenu }) => {
         localStorage.removeItem("auth");
     }
 
-    return <div className={css.navbar}>
+    return <div className={css.navbar}  >
+        {/* style={{backgroundImage: 'linear-gradient(to right, #ffffff, #ffffff,#e90092, #e90092,#ffffff,#ffffff,#ffffff)'}} */}
         <img className={css.menuBar} src={menuBar} alt='menu bar' onClick={() => setToggleMenu(val => !val)} />
         <div className={css.navbarInner}>
             <div className={css.leftSide}>
-                <Link to='/' className={css.appTxt}>Zomato</Link>
+                <Link to='/' className={css.appTxt} style={{fontFamily:'DexaBold',color:'var(--primary-color)'}}><img src={logo} style={{marginTop:8}} width={170} height={49} /></Link>
             </div>
-            <div className={css.searchBar}>
+            <div className={css.searchBar} >
                 <SearchBar />
             </div>
             <div className={css.rightSide}>
-                {loggedIn ? (<div className={css.menuItem}>
+                {loggedIn? (<div className={css.menuItem}>
                     <div className={css.profile} onClick={() => setMenuDisplay(val => !val)}>
                         <img src={profilePic} alt="profile pic" className={css.profilePic} />
-                        <div className={css.profileName}>Profile</div>
+                        <div className={css.profileName}  style={{fontFamily:'DexaSemi',color:'var(--primary-color)'}} >Profile</div>
                         <img src={downArrow} alt="arrow" className={css.arrow} />
                     </div>
                     <div className={css.menu} style={{display: menuDisplay ? "block" : ""}}>
-                    <Link to='/user/ll/reviews' className={css.menuItemLinkTxt}>
-                            <div className={css.menuItemLink}>
+                    <Link to='/user/ll/reviews' className={css.menuItemLinkTxt} style={{fontFamily:'DexaBold',color:'var(--primary-color)'}} >
+                            <div className={css.menuItemLink} style={{fontFamily:'DexaLight',color:'var(--primary-color)'}} >
                                 Profile
                             </div>
                         </Link>
@@ -53,12 +54,12 @@ let NavigationBar = ({ toogleMenu, setToggleMenu }) => {
                             </div>
                         </Link> */}
                         <Link to='/user/ll/bookmarks' className={css.menuItemLinkTxt}>
-                            <div className={css.menuItemLink}>
+                            <div className={css.menuItemLink } style={{fontFamily:'DexaLight',color:'var(--primary-color)'}}>
                                 Bookmarks
                             </div>
                         </Link>
                         <Link to='/user/ll/reviews' className={css.menuItemLinkTxt}>
-                            <div className={css.menuItemLink}>
+                            <div className={css.menuItemLink} style={{fontFamily:'DexaLight',color:'var(--primary-color)'}}>
                                 Reviews
                             </div>
                         </Link>
@@ -73,19 +74,19 @@ let NavigationBar = ({ toogleMenu, setToggleMenu }) => {
                             </div>
                         </Link> */}
                         <Link to='/user/ll/settings' className={css.menuItemLinkTxt}>
-                            <div className={css.menuItemLink}>
+                            <div className={css.menuItemLink} style={{fontFamily:'DexaLight',color:'var(--primary-color)'}}>
                                 Settings
                             </div>
                         </Link>
                         <div className={css.menuItemLinkTxt} onClick={logoutHandler}>
-                            <div className={css.menuItemLink}>
+                            <div className={css.menuItemLink} style={{fontFamily:'DexaLight',color:'var(--primary-color)'}}>
                                 Logout
                             </div>
                         </div>
                     </div>
                 </div>): (<>
-                    <div className={css.menuItem} onClick={() => setAuth({ closed: false, login: true, signup: false })}>Log in</div>
-                    <div className={css.menuItem} onClick={() => setAuth({ closed: false, login: false, signup: true })}>Sign up</div>
+                    <div style={{fontFamily:'DexaLight',color:'var(--primary-color)'}} className={css.menuItem} onClick={() => setAuth({ closed: false, login: true, signup: false })}>Log in</div>
+                    <div style={{fontFamily:'DexaLight',color:'var(--primary-color)'}} className={css.menuItem} onClick={() => setAuth({ closed: false, login: false, signup: true })}>Sign up</div>
                 </>)}
             </div>
         </div>

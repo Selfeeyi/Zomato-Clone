@@ -40,11 +40,11 @@ const UserHero = () => {
                     <span className={css.count}>1</span>
                     <span className={css.countTxt}>Photos</span>
                   </span>
-                  <hr className={css.bar} />
+                  {/* <hr className={css.bar} />
                   <span className={css.boxTxt}>
                     <span className={css.count}>1</span>
                     <span className={css.countTxt}>Followers</span>
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>

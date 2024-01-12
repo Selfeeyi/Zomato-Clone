@@ -144,13 +144,15 @@ let Signup = ({ setAuth, setLoggedIn }) => {
             )}
           </button>
         </div>
-        <div className={signupCss.orBreak}>
+        
+        {/* <div className={signupCss.orBreak}>
           <span className={signupCss.orBreakText}>or</span>
         </div>
         <div className={signupCss.socialSignupBox}>
           <img className={signupCss.icon} src={gLogo} alt="google login" />
           Continue with Google
-        </div>
+        </div> */}
+
         <hr className={signupCss.break} />
         <div className={signupCss.newToZomato}>
           Already have an account?{" "}

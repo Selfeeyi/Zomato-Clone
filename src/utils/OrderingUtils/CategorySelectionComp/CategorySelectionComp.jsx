@@ -30,11 +30,11 @@ let CategorySelectionComp = ({ imgSrc, imgSrc2, title, color, isActive, setIsAct
 
     return <div className={outerClass} onClick={changeState}>
         <div className={css.innerDiv}>
-            <div className={css.imgBox} style={{ backgroundColor: backgroundColor }}>
-                <img className={css.img} src={isActive[comp] ? imgSrc2 : imgSrc} alt="image" />
+            <div className={css.imgBox} style={{ backgroundColor: color }}>
+                <img className={css.img} src={isActive[comp] ? imgSrc2 : imgSrc2} alt="image" />
             </div>
             <div className={css.txtBox}>
-                <div className={titleClass}>{title}</div>
+                <div className={titleClass} style={{fontFamily:'DexaLight',color:'var(--primary-color)'}}>{title}</div>
             </div>
         </div>
     </div>

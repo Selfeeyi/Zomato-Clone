@@ -28,8 +28,8 @@
 }
 
 .menuTxtActive{
-    color: var(--color-redish1);
-    border-bottom: var(--brd-redish-color-2p);
+    color: var(--primary-color);
+    /* border-bottom: var(--brd-redish-color-2p); */
 }
 
 .componentsBody{

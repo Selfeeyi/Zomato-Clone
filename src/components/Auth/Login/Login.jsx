@@ -127,10 +127,10 @@ let Login = ({ setAuth, setLoggedIn }) => {
               </button>
             </div>
 
-            <div className={loginCss.orBreak}>
+            {/* <div className={loginCss.orBreak}>
               <span className={loginCss.orBreakText}>or</span>
-            </div>
-
+            </div> */}
+{/* 
             <div className={loginCss.socialSignupBox}>
               <img className={loginCss.icon} src={mailLogo} alt="email signup" />
               Continue with Email
@@ -138,7 +138,7 @@ let Login = ({ setAuth, setLoggedIn }) => {
             <div className={loginCss.socialSignupBox}>
               <img className={loginCss.icon} src={gLogo} alt="google signup" />
               Continue with Google
-            </div>
+            </div> */}
 
             <hr className={loginCss.break} />
             <div className={loginCss.newToZomato}>

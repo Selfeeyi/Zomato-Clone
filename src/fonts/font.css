@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'DexaBold';
+    src: url('./dexapro-700-bold.otf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'DexaLight';
+    src: url('./dexapro-300-light.otf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'DexaSemi';
+    src: url('./dexapro-600-semibold.otf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }

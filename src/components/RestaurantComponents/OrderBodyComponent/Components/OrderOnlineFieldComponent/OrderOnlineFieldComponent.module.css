@@ -27,7 +27,7 @@
 
 .activeNavTab{
     font-weight: 500;
-    color: var(--color-redish1);
+    color: var(--primary-color);
     border-right: var(--brd-redish-color-2p);
     background: var(--bg2-li);
 }

@@ -23,11 +23,11 @@ let ShowcaseCard = (props) => {
             </div>
             <div className={css.txtBox}>
                 <div className={css.titleBox}>
-                    <div className={css.title}>{name}</div>
+                    <div className={css.title} style={{fontFamily:'DexaSemi',color:'var(--secondary-color)'}}>{name}</div>
                     <div className={css.ratingBox}> {rating} <img className={css.star} src={star} alt="gorwing arrow" /></div>
                 </div>
                 <div className={css.tagBox}>
-                    <div className={css.tagTitle}>South Indian</div>
+                    <div className={css.tagTitle} style={{fontFamily:'DexaLight',color:'black'}}>South Indian</div>
                     <div className={css.tagTxt}>₹<span className={css.type}>350</span> for <span className={css.num}>One</span></div>
                 </div>
             </div>

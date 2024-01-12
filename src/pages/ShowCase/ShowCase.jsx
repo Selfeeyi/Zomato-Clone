@@ -19,16 +19,34 @@ import filtersIcon from "/icons/filter.png";
 import deliveryTimeIcon from "/icons/delivery-time.png";
 import downArrowIcon from "/icons/down-arrow.png";
 import Filter from "../../utils/OrderingUtils/FilterBox/filter";
-import biryaniCImg from "/icons/Food/biryaniC.png";
-import burgerImg from "/icons/Food/burger.png";
-import chickenImg from "/icons/Food/chicken.png";
-import friesImg from "/icons/Food/fries.png";
-import homestyleImg from "/icons/Food/homestyle.png";
-import noodelsImg from "/icons/Food/noodels.png";
-import pannerImg from "/icons/Food/panner.png";
-import pizzaImg from "/icons/Food/pizza.png";
-import sandwichImg from "/icons/Food/sandwich.png";
-import shawarmaImg from "/icons/Food/shawarma.png";
+// import biryaniCImg from "/icons/Food/biryaniC.png";
+// import burgerImg from "/icons/Food/burger.png";
+// import chickenImg from "/icons/Food/chicken.png";
+// import friesImg from "/icons/Food/fries.png";
+// import homestyleImg from "/icons/Food/homestyle.png";
+// import noodelsImg from "/icons/Food/noodels.png";
+// import pannerImg from "/icons/Food/panner.png";
+// import pizzaImg from "/icons/Food/pizza.png";
+// import sandwichImg from "/icons/Food/sandwich.png";
+// import shawarmaImg from "/icons/Food/shawarma.png";
+
+
+import biryaniCImg from "../../asets/images/biryani.png";
+import burgerImg from "../../asets/images/burger.png";
+import chickenImg from "../../asets/images/chicken.png";
+import friesImg from "../../asets/images/fries.png";
+import homestyleImg from "../../asets/images/homeStyle.png";
+import noodelsImg from "../../asets/images/noodels.png";
+import pannerImg from "../../asets/images/panner.png";
+import pizzaImg from "../../asets/images/pizza.png";
+import sandwichImg from "../../asets/images/sandwich.png";
+import shawarmaImg from "../../asets/images/shawarma.png";
+
+import thalassery from "../../asets/images/thalassery.png";
+import mcdelivery from "../../asets/images/mcdelivery.png";
+import a2b from "../../asets/images/a2b.png";
+
+
 
 import kfcImg from "/icons/Brands/kfc.png";
 import pizzahutImg from "/icons/Brands/pizzahut.png";
@@ -52,11 +70,13 @@ import css from "./ShowCase.module.css";
 import Modal from "../../components/Modal/Modal";
 
 import Cross from "../../asets/svg/Cross";
+import Search from "../../asets/svg/Search";
+import Cancel from "../../asets/svg/Cancel";
 
 let ShowCase = () => {
   let [toogleMenu, setToggleMenu] = useState(true);
   const [modalId, setModalId] = useState(null);
-  const [val, setVal] = useState(0);
+  const [val, setVal] = useState("Sort by");
   const [restaurantImages, setRestaurantImages] = useState({});
   const [items, setItems] = useState([]);
   let location = useLocation();
@@ -64,8 +84,39 @@ let ShowCase = () => {
   const page = urlParams.get("page");
   const [isFilterPageOpen, setIsFilterPageOpen] = useState(false);
   const [createModal, setCreateModal] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Popularity");
+  const [isChecked, setIsChecked] = useState(false);
+  const [selectedCities, setSelectedCities] = useState([]);
 
-  const modalData = ["Sort By", "Cuisines", "Rating"];
+  const [range, setRange] = useState("Any");
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const handleCheckboxToggle = () => {
+    setIsChecked(!isChecked);
+  };
+
+  const handleCheckboxChange = (city) => {
+    const updatedCities = selectedCities.includes(city)
+      ? selectedCities.filter((selectedCity) => selectedCity !== city)
+      : [...selectedCities, city];
+
+    setSelectedCities(updatedCities);
+  };
+
+  const modalData = [
+    {
+      label: "Sort By",
+    },
+    {
+      label: "Cuisines",
+    },
+    {
+      label: "Rating",
+    },
+  ];
 
   const handleFilterBoxClick = () => {
     // Toggle the state to open/close the filter page
@@ -140,7 +191,7 @@ let ShowCase = () => {
     delivery: [
       { text: "Filter", leftIcon: filtersIcon },
       { text: "Rating: 4.0+" },
-      // { text: "Delivery Time", leftIcon: deliveryTimeIcon },
+      // { text: "Delivery Time", leftIcon: TimeIcon },
       { text: "Pure Veg" },
 
       // { text: "Freate Offers" },
@@ -160,7 +211,7 @@ let ShowCase = () => {
     //     { text: "Pubs & Bars" },
     // ]
   };
-  if (page === orderOnlinePage) {
+  if (page !== orderOnlinePage || page === orderOnlinePage) {
     filterBoxes = filters?.delivery?.map((val, id) => {
       return (
         <div key={id}>
@@ -247,18 +298,18 @@ let ShowCase = () => {
 
   const brandsCardScroll = [
     {
-      name: "KFC",
-      imgSrc: kfcImg,
+      name: "Thalassery",
+      imgSrc: thalassery,
       time: "45",
     },
     {
-      name: "Pizza Hut",
-      imgSrc: pizzahutImg,
+      name: "Mc Delivery",
+      imgSrc: mcdelivery,
       time: "35",
     },
     {
-      name: "Scoops",
-      imgSrc: scoopsImg,
+      name: "A2B",
+      imgSrc: a2b,
       time: "49",
     },
     {
@@ -384,7 +435,7 @@ let ShowCase = () => {
     <div className={css.outerDiv}>
       <NavigationBar2 />
       <div className={css.innerDiv}>
-        <div className={css.breadcrumb}>
+        <div className={css.breadcrumb} style={{color:'var(--secondary-color)'}}>
           Home / India / Bengaluru / Bangalore City / Indira Nagar
         </div>
       </div>
@@ -403,17 +454,17 @@ let ShowCase = () => {
                 <CategorySelectionComp title="NightLife" imgSrc={nightlife1} imgSrc2={nightlife2} color="#EDF4FF" comp='nightlife' isActive={isActive} setIsActive={setIsActive} /> */}
         </div>
       </div>
-      {page !== orderOnlinePage ? (
+      {/* {page !== orderOnlinePage ? (
         <div className={css.innerDiv2}>
           <div className={css.w7}>
             <Collections />
           </div>
         </div>
-      ) : null}
+      ) : null} */}
       <div className={css.innerDiv3}>
         <div className={css.filtersDiv}>{filterBoxes}</div>
       </div>
-      {page === orderOnlinePage ? (
+      {/* {page === orderOnlinePage ? ( */}
         <div className={css.innerDiv4}>
           <div className={css.w7}>
             <div className={css.innerDiv4Title}>
@@ -432,8 +483,8 @@ let ShowCase = () => {
             </div>
           </div>
         </div>
-      ) : null}
-      {page === orderOnlinePage ? (
+      {/* ) : null} */}
+      {/* {page === orderOnlinePage ? ( */}
         <div className={css.innerDiv5}>
           <div className={css.w7}>
             <div className={css.innerDiv5Title}>Top brands for you</div>
@@ -454,10 +505,10 @@ let ShowCase = () => {
             </div>
           </div>
         </div>
-      ) : null}
+      {/* ) : null} */}
       <div className={css.innerDiv6}>
         <div className={css.w7}>
-          <div className={css.innerDiv6Title}>
+          <div className={css.innerDiv6Title}style={{fontFamily:'DexaSemi',color:'var(--primary-color)'}}>
             {page === orderOnlinePage
               ? "Delivery Restaurants in Bangalore"
               : page === diningOutPage
@@ -504,17 +555,15 @@ let ShowCase = () => {
       <Modal isOpen={createModal} onClose={() => setCreateModal(false)}>
         <div
           style={{
-            paddingInline: 10,
             display: "flex",
             flexDirection: "column",
             // gridTemplateColumns: "repeat(2, 1fr)",
-            gridGap: "4%",
+            // gridGap: "4%",
             // overflow: "hidden",
             width: 700,
             height: 600,
             overflowY: "auto",
             marginTop: 10,
-            marginBottom: 10,
           }}
         >
           <div
@@ -530,130 +579,598 @@ let ShowCase = () => {
             }}
           >
             <h2>Filters</h2>
-
-            <Cross />
+            <div onClick={() => setCreateModal(false)}>
+              <Cross />
+            </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "row" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              borderBottom: "1px solid grey",
+            }}
+          >
             <div style={{ flex: 1 }}>
-              {modalData.map((item, i) => (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+
+                  fontWeight: "600",
+                  fontSize: 18,
+                  backgroundColor: "#f8f8f8",
+                  height: 420,
+                }}
+              >
+                <div
+                  onClick={() => setVal("Sort by")}
+                  style={{
+                    paddingLeft: val === "Sort by" ? 15 : 20,
+                    backgroundColor: val === "Sort by" ? "white" : "",
+                    borderLeft: val === "Sort by" ? "5px solid #ef4f5f " : "",
+                    height: "6rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <p style={{ margin: 0, cursor: "pointer" }}>Sort by</p>
+                  <p style={{ margin: 0, fontSize: 15, color: "#ef4f5f" }}>
+                    {selectedOption}
+                  </p>
+                </div>
+                <div
+                  onClick={() => setVal("Cuisines")}
+                  style={{
+                    paddingLeft: val === "Cuisines" ? 15 : 20,
+                    backgroundColor: val === "Cuisines" ? "white" : "",
+                    borderLeft: val === "Cuisines" ? "5px solid #ef4f5f " : "",
+                    height: "6rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <p style={{ margin: 0, cursor: "pointer" }}>Cuisines</p>
+                  {selectedCities.length >= 1 && (
+                    <p style={{ margin: 0, fontSize: 15, color: "#ef4f5f" }}>
+                      {selectedCities.length} Selected
+                    </p>
+                  )}
+
+                  {/* <p style={{ margin: 0, fontSize: 15, color: "#ef4f5f" }}>
+                    Selected cities: {selectedCities.join(", ")}
+                  </p> */}
+                </div>
+                <div
+                  onClick={() => setVal("Rating")}
+                  style={{
+                    paddingLeft: val === "Rating" ? 15 : 20,
+                    backgroundColor: val === "Rating" ? "white" : "",
+                    borderLeft: val === "Rating" ? "5px solid #ef4f5f " : "",
+                    height: "6rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <p style={{ margin: 0, cursor: "pointer",}}>Rating</p>
+                </div>
+                <div
+                  onClick={() => setVal("More filters")}
+                  style={{
+                    paddingLeft: val === "More filters" ? 15 : 20,
+                    backgroundColor: val === "More filters" ? "white" : "",
+                    borderLeft:
+                      val === "More filters" ? "5px solid #ef4f5f " : "",
+                    height: "6rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <p style={{ margin: 0, cursor: "pointer" }}>More filters</p>
+                </div>
+              </div>
+            </div>
+
+            {val == "Sort by" && (
+              <div style={{ flex: 2, paddingInline: 20 }}>
                 <div
                   style={{
                     display: "flex",
-                    flexDirection: "column",
-                    gap: 60,
-                    fontWeight: "600",
-                    fontSize: 18,
+                    flexDirection: "row",
+                    alignItems: "center",
                   }}
                 >
-                  <p onClick={() => setVal(i)}>{item}</p>
-                </div>
-              ))}
-            </div>
-
-            {val == 0 && (
-              <div style={{ flex: 2 }}>
-                <div style={{ display: "flex", flexDirection: "row" }}>
-                  <input type="radio" />
+                  <input
+                    type="radio"
+                    value="Popularity"
+                    checked={selectedOption === "Popularity"}
+                    onChange={handleOptionChange}
+                  />
                   <p>Popularity</p>
                 </div>
-                <div style={{ display: "flex", flexDirection: "row" }}>
-                  <input type="radio" />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    value="Rating: High to Low"
+                    checked={selectedOption === "Rating: High to Low"}
+                    onChange={handleOptionChange}
+                  />
                   <p>Rating: High to Low</p>
                 </div>
-                <div style={{ display: "flex", flexDirection: "row" }}>
-                  <input type="radio" />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    value="Delivery Time"
+                    checked={selectedOption === "Delivery Time"}
+                    onChange={handleOptionChange}
+                  />
                   <p>Delivery Time</p>
                 </div>
-                <div style={{ display: "flex", flexDirection: "row" }}>
-                  <input type="radio" />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    value="Cost: Low to High"
+                    checked={selectedOption === "Cost: Low to High"}
+                    onChange={handleOptionChange}
+                  />
                   <p>Cost: Low to High</p>
                 </div>
-                <div style={{ display: "flex", flexDirection: "row" }}>
-                  <input type="radio" />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    value="Cost: High to Low"
+                    checked={selectedOption === "Cost: High to Low"}
+                    onChange={handleOptionChange}
+                  />
                   <p>Cost: High to Low</p>
                 </div>
               </div>
             )}
-            {val == 1 && (
-              <div style={{ flex: 2, marginRight: 30 }}>
-                <input
-                  type="text"
-                  placeholder="Search here"
-                  style={{
-                    border: "1px solid #CFCFCF",
-                    paddingBlock: 10,
-                    width: "100%",
-                    outline: "none",
-                    borderRadius: 10,
-                    paddingInline: 10,
-                  }}
-                />
-                <div style={{display:'flex',flexDirection:'row',gap:80}}>
-                <div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Abruzzese</p>
+            {val == "Cuisines" && (
+              <div style={{ flex: 2, paddingInline: 20 }}>
+                <div style={{ paddingBlock: 20, position: "relative" }}>
+                  <div style={{ position: "absolute", top: "40%", left: 6 }}>
+                    <Search />
                   </div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Aegean</p>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Abruzzese</p>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Aegean</p>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Aegean</p>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Abruzzese</p>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Aegean</p>
-                  </div>
-                </div>
-                <div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Abruzzese</p>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Aegean</p>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Abruzzese</p>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Aegean</p>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Aegean</p>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Abruzzese</p>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <input type="checkbox" />
-                    <p>Aegean</p>
-                  </div>
-                </div>
-                </div>
-             
 
+                  <input
+                    type="text"
+                    placeholder="Search here"
+                    style={{
+                      border: "1px groove #CFCFCF",
+                      width: "100%",
+                      outline: "none",
+                      borderRadius: 6,
+                      paddingInline: 30,
+                      paddingBlock: 10,
+                      fontSize: 20,
+                    }}
+                  />
+                  <div style={{ position: "absolute", top: "40%", right: 6 }}>
+                    <Cancel />
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 80,
+                    height: 300,
+                    overflowY: "auto",
+                  }}
+                >
+                  <div style={{ height: 400, overflowY: "auto" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        onChange={() => handleCheckboxChange("New York")}
+                      />
+                      <p>Abruzzese</p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        onChange={() => handleCheckboxChange("Aegean")}
+                      />
+                      <p>Aegean</p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        onChange={() => handleCheckboxChange("Abruzzese")}
+                      />
+                      <p>Abruzzese</p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        onChange={() => handleCheckboxChange("Aegean")}
+                      />
+                      <p>Aegean</p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        onChange={() => handleCheckboxChange("England")}
+                      />
+                      <p>England</p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input type="checkbox" />
+                      <p>Abruzzese</p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input type="checkbox" />
+                      <p>Aegean</p>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input type="checkbox" />
+                      <p>Abruzzese</p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input type="checkbox" />
+                      <p>Aegean</p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input type="checkbox" />
+                      <p>Abruzzese</p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input type="checkbox" />
+                      <p>Aegean</p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input type="checkbox" />
+                      <p>Aegean</p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input type="checkbox" />
+                      <p>Abruzzese</p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <input type="checkbox" />
+                      <p>Aegean</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
+            {val == "Rating" && (
+              <div style={{ flex: 2, paddingInline: 20 }}>
+                <small style={{ color: "#696969", fontSize: 12 }}>Rating</small>
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <p
+                    style={{
+                      margin: 0,
+                      color: "#1c1c1c",
+                      fontWeight: "600",
+                      fontSize: 20,
+                    }}
+                  >
+                    {range}
+                  </p>
+                  <p
+                    style={{
+                      margin: 0,
+                      color: "#1c1c1c",
+                      fontWeight: "600",
+                      fontSize: 20,
+                    }}
+                  >
+                    {range === "3.5" || range === "4.0" || range === "4.5"
+                      ? " +"
+                      : ""}
+                  </p>
+                </div>
+                <div
+                  className=""
+                  style={{
+                    marginTop: "40%",
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 2,
+                  }}
+                >
+                  <div onClick={() => setRange("Any")}>
+                    <div
+                      style={{
+                        height: range === "Any" ? 20 : 15,
+                        width: range === "Any" ? 20 : 15,
+                        backgroundColor:
+                          range === "3.5" ||
+                          range === "4.0" ||
+                          range === "4.5" ||
+                          range === "5.0"
+                            ? "#e8e8e8"
+                            : "#ef4f5f",
+                        borderRadius: "50%",
+                      }}
+                    ></div>
+                  </div>
+
+                  <div
+                    style={{
+                      width: "100%",
+                      height: 4,
+                      backgroundColor:
+                        range === "3.5" ||
+                        range === "4.0" ||
+                        range === "4.5" ||
+                        range === "5.0"
+                          ? "#e8e8e8"
+                          : "#ef4f5f",
+                    }}
+                  ></div>
+                  <div onClick={() => setRange("3.5")}>
+                    <div
+                      style={{
+                        height: range === "3.5" ? 20 : 15,
+                        width: range === "3.5" ? 20 : 15,
+                        backgroundColor:
+                          range === "4.0" || range === "4.5" || range === "5.0"
+                            ? "#e8e8e8"
+                            : "#ef4f5f",
+                        borderRadius: "50%",
+                      }}
+                    ></div>
+                  </div>
+                  <div
+                    style={{
+                      width: "100%",
+                      height: 4,
+                      backgroundColor:
+                        range === "4.0" || range === "4.5" || range === "5.0"
+                          ? "#e8e8e8"
+                          : "#ef4f5f",
+                    }}
+                  ></div>
+                  <div onClick={() => setRange("4.0")}>
+                    <div
+                      style={{
+                        height: range === "4.0" ? 20 : 15,
+                        width: range === "4.0" ? 20 : 15,
+                        backgroundColor:
+                          range === "4.5" || range === "5.0"
+                            ? "#e8e8e8"
+                            : "#ef4f5f",
+                        borderRadius: "50%",
+                      }}
+                    ></div>
+                  </div>
+                  <div
+                    style={{
+                      width: "100%",
+                      height: 4,
+                      backgroundColor:
+                        range === "4.5" || range === "5.0"
+                          ? "#e8e8e8"
+                          : "#ef4f5f",
+                    }}
+                  ></div>
+                  <div onClick={() => setRange("4.5")}>
+                    <div
+                      style={{
+                        height: range === "4.5" ? 20 : 15,
+                        width: range === "4.5" ? 20 : 15,
+                        backgroundColor:
+                          range === "5.0" ? "#e8e8e8" : "#ef4f5f",
+                        borderRadius: "50%",
+                      }}
+                    ></div>
+                  </div>
+                  <div
+                    style={{
+                      width: "100%",
+                      height: 4,
+                      backgroundColor: range === "5.0" ? "#e8e8e8" : "#ef4f5f",
+                    }}
+                  ></div>
+                  <div onClick={() => setRange("5.0")}>
+                    <div
+                      style={{
+                        height: range === "5.0" ? 20 : 15,
+                        width: range === "5.0" ? 20 : 15,
+                        backgroundColor: "#ef4f5f",
+                        borderRadius: "50%",
+                      }}
+                    ></div>
+                  </div>
+                </div>
+
+                <div
+                  className=""
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <small style={{ fontWeight: "500", color: "#000000de" }}>
+                    Any
+                  </small>
+                  <small style={{ fontWeight: "500", color: "#000000de" }}>
+                    3.5
+                  </small>
+                  <small style={{ fontWeight: "500", color: "#000000de" }}>
+                    4.0
+                  </small>
+                  <small style={{ fontWeight: "500", color: "#000000de" }}>
+                    4.5
+                  </small>
+                  <small style={{ fontWeight: "500", color: "#000000de" }}>
+                    5.0
+                  </small>
+                </div>
+              </div>
+            )}
+
+            {val == "More filters" && (
+              <div style={{ flex: 2, paddingInline: 20 }}>
+                <div style={{ paddingBlock: 20, position: "relative" }}>
+                  <div style={{ position: "absolute", top: "40%", left: 6 }}>
+                    <Search />
+                  </div>
+
+                  <input
+                    type="text"
+                    placeholder="Search here"
+                    style={{
+                      border: "1px groove #CFCFCF",
+                      width: "100%",
+                      outline: "none",
+                      borderRadius: 6,
+                      paddingInline: 30,
+                      paddingBlock: 10,
+                      fontSize: 20,
+                    }}
+                  />
+                  <div style={{ position: "absolute", top: "40%", right: 6 }}>
+                    <Cancel />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "end",
+              marginTop: 20,
+              paddingInline: 20,
+              alignItems: "center",
+              gap: 30,
+            }}
+          >
+            <p style={{ color: "#1C1C1C" }}>Clear All</p>
+            <button
+              style={{
+                backgroundColor: "#ef4f5f",
+                outline: "none",
+                border: "none",
+                color: "white",
+                paddingInline: 40,
+                borderRadius: 10,
+                paddingBlock: 15,
+              }}
+            >
+              Apply
+            </button>
           </div>
         </div>
       </Modal>

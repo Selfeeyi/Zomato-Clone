@@ -35,7 +35,7 @@ let ExploreOptionsNearMe = () => {
   return (
     <div className={css.outerDiv}>
       <div className={css.innerDiv}>
-        <div className={css.title}>Explore options near me</div>
+        <div className={css.title} style={{fontFamily:'DexaSemi',color:'var(--primary-color)'}}>Explore options near me</div>
         <div className={css.cards}>
           <CollapsableCard title="Popular cuisines near me" content={chain} />
           <CollapsableCard

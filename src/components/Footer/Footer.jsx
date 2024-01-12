@@ -23,7 +23,7 @@ let Footer = () => {
     <div className={footerCss.footer}>
       <div className={footerCss.innerFooter}>
         <div className={footerCss.sec1}>
-          <div className={footerCss.logoBox}>Zomato</div>
+          <div className={footerCss.logoBox} style={{fontFamily:'DexaBold',color:'var(--primary-color)'}}>Tedeey</div>
           <div className={footerCss.filters}>
             <div className={footerCss.filterBox}>
               {" "}
@@ -47,69 +47,69 @@ let Footer = () => {
         </div>
         <div className={footerCss.sec2}>
           <div className={[footerCss.box1, footerCss.box].join(" ")}>
-            <div className={footerCss.boxTtl}>ABOUT ZOMATO</div>
-            <a href="" className={footerCss.boxOpt}>
+            <div className={footerCss.boxTtl} style={{fontFamily:'DexaLight',color:'var(--primary-color)'}}>ABOUT TEDEEY</div>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Who We Are
             </a>
-            <a href="" className={footerCss.boxOpt}>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Blog
             </a>
-            <a href="" className={footerCss.boxOpt}>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Work With Us
             </a>
-            <a href="" className={footerCss.boxOpt}>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Investor Relations
             </a>
-            <a href="" className={footerCss.boxOpt}>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Report Fraud
             </a>
           </div>
           <div className={[footerCss.box2, footerCss.box].join(" ")}>
-            <div className={footerCss.boxTtl}>ZOMAVERSE</div>
-            <a href="" className={footerCss.boxOpt}>
+            <div className={footerCss.boxTtl} style={{fontFamily:'DexaLight',color:'var(--primary-color)'}}>ZOMAVERSE</div>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Zomato
             </a>
-            <a href="" className={footerCss.boxOpt}>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Feeding India
             </a>
-            <a href="" className={footerCss.boxOpt}>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Hyperpure
             </a>
-            <a href="" className={footerCss.boxOpt}>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Zomaland
             </a>
           </div>
           <div className={[footerCss.box3, footerCss.box].join(" ")}>
-            <div className={footerCss.boxTtl}>FOR RESTAURANTS</div>
-            <a href="" className={footerCss.boxOpt}>
+            <div className={footerCss.boxTtl} style={{fontFamily:'DexaLight',color:'var(--primary-color)'}} >FOR RESTAURANTS</div>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Partner With Us
             </a>
-            <a href="" className={footerCss.boxOpt}>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Apps For You
             </a>
 
-            <div className={footerCss.boxTtl}>FOR ENTERPRISES</div>
-            <a href="" className={footerCss.boxOpt}>
+            <div className={footerCss.boxTtl} style={{fontFamily:'DexaLight',color:'var(--primary-color)'}}>FOR ENTERPRISES</div>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Zomato For Work
             </a>
           </div>
           <div className={[footerCss.box4, footerCss.box].join(" ")}>
-            <div className={footerCss.boxTtl}>LEARN MORE</div>
-            <a href="" className={footerCss.boxOpt}>
+            <div className={footerCss.boxTtl} style={{fontFamily:'DexaLight',color:'var(--primary-color)'}}>LEARN MORE</div>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Privacy
             </a>
-            <a href="" className={footerCss.boxOpt}>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Security
             </a>
-            <a href="" className={footerCss.boxOpt}>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Terms
             </a>
-            <a href="" className={footerCss.boxOpt}>
+            <a href="" style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}} className={footerCss.boxOpt}>
               Sitemap
             </a>
           </div>
           <div className={[footerCss.box5, footerCss.box].join(" ")}>
-            <div className={footerCss.boxTtl}>SOCIAL LINKS</div>
+            <div className={footerCss.boxTtl} style={{fontFamily:'DexaLight',color:'var(--primary-color)'}} >SOCIAL LINKS</div>
             <div className={footerCss.socialImgs}>
               <a
                 href="https://www.facebook.com"
@@ -182,7 +182,7 @@ let Footer = () => {
           </div>
         </div>
         <hr className={footerCss.breakLine} />
-        <div className={footerCss.sec3}>
+        <div className={footerCss.sec3} style={{color:'var(--secondary-color)'}}>
           By continuing past this page, you agree to our Terms of Service,
           Cookie Policy, Privacy Policy and Content Policies. All trademarks are
           properties of their respective owners. 2008-2024 © Zomato™ Ltd. All

@@ -17,9 +17,31 @@
     }
 }
 
-.radioOption input[type="radio"] {
+input[type="radio"] {
     /* Customize the size of the radio button */
     width: 20px;
     height: 20px;
     margin-right: 5px; /* Optional spacing between the radio button and label text */
+  }
+
+  /* input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: 1px;
+    left: 1px;
+    position: relative;
+    background-color: #ef4f5f;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+} */
+
+
+ input[type="checkbox"] {
+    /* Customize the size of the checkbox */
+    width: 17px;
+    height: 17px;
+    margin-right: 5px; /* Optional spacing between the checkbox and label text */
   }

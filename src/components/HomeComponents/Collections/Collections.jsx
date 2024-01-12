@@ -10,10 +10,10 @@ import CollectionsCard from '../../../utils/Cards/card2/CollectionsCard'
 
 let Collections = () => {
     return <div className={css.outerDiv}>
-        <div className={css.title}>Collections</div>
+        <div className={css.title} style={{fontFamily:'DexaLight',color:'var(--primary-color)'}}>Collections</div>
         <div className={css.tagLine}>
-            <span className={css.desc}>Explore curated lists of top restaurants, cafes, pubs, and bars in Hyderabad, based on trends</span>
-            <span className={css.collectionPlacesTag}>All collections in Hyderabad <span className={css.rightArrowBox}><img className={css.rightArrow} src={rightArrow} alt="right arrow" /></span></span>
+            <span className={css.desc} style={{fontFamily:'DexaLight',color:'var(--secondary-color)'}}>Explore curated lists of top restaurants, cafes, pubs, and bars in Hyderabad, based on trends</span>
+            <span className={css.collectionPlacesTag} style={{fontFamily:'DexaLight',color:'var(--primary-color)'}}>All collections in Hyderabad <span className={css.rightArrowBox} ><img className={css.rightArrow} src={rightArrow} alt="right arrow" /></span></span>
         </div>
         <div className={css.cards}>
             <CollectionsCard imgSrc={CathTheMatachImg} title="Catch the Match" places="30" />

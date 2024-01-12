@@ -2,6 +2,11 @@
 
     /* Colors Start */
 
+/* //////////For Teedey/////////////// */
+    --primary-color: black;
+    --secondary-color: black;
+
+
     --color-white: rgb(255, 255, 255);
     --color-ash: rgb(156, 156, 156);
     --color-black: rgb(0, 0, 0);
@@ -15,6 +20,7 @@
     --color-greenish: rgb(58, 183, 87);
     --color-greenish2: #24963F;
     --color-goldish: rgb(233, 181, 1);
+
 
     --color-title-text: rgb(28, 28, 28);
     --color-text: rgb(54, 54, 54);
@@ -75,7 +81,7 @@
     
     --brd-redish-color: 1px solid rgb(239, 79, 95);
 
-    --brd-redish-color-2p: 2px solid rgb(239, 79, 95);
+    --brd-redish-color-2p: 2px solid #e90092;
 
     --brd1-color: rgb(207, 207, 207);
     --brd2-color: rgb(206, 206, 206);
@@ -89,6 +95,8 @@
     --brd7: 1px solid rgb(248, 248, 248);
 
     --brd2-2p: 2px solid rgb(207, 207, 207);
+
+    
 
     /* Borders End */
 

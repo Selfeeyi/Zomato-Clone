@@ -19,6 +19,8 @@ import EnterOTP from '../../components/Auth/EnterOTP/EnterOTP'
 
 const EditProfileModal = ({setModal}) => {
 
+
+
     let [dropdown, setDropDown] = useState(false);
     let [changeMailModal, setChangeMailModal] = useState(false);
     let [initialValues, setInitialValues] = useState({ 
@@ -30,6 +32,7 @@ const EditProfileModal = ({setModal}) => {
         handle:"",
         website:""
     })
+
 
     let validationSchema = Yup.object({
         fullName: Yup.string().min(3, "Minimum 3 charecters required!"),
@@ -88,6 +91,8 @@ const EditProfileModal = ({setModal}) => {
                     </div>
                 </div>
             </div>
+
+      
             <div className={css.bdy}>
                 <Formik
                     initialValues={initialValues}
@@ -96,7 +101,7 @@ const EditProfileModal = ({setModal}) => {
                     className={css.formikForm}
                 >{(formik) => {
                     return <Form className={css.form}>
-                        <TextUtil name="fullName" placeholder="Enter name"/>
+                        <TextUtil name="fullName"  placeholder="Enter name"/>
                         <TextUtil name="phone" placeholder="Enter phone number" disabled/>
                         <span className={css.formTxt}>You can update your phone number using the Zomato app</span>
                         <TextUtilWithCancel txt="Change" name="email" placeholder="sample@sample.com" formik="" changeHandler={mailCahngeHandler} disabled/>
@@ -106,8 +111,9 @@ const EditProfileModal = ({setModal}) => {
                         <TextUtil name="handle" placeholder="Handle"/>
                         <span className={css.formTxt}>You can only change your handle once</span>
                         <TextUtil name="website" placeholder="Website"/>
+                        
                         <div className={css.btns}>
-                            <WhiteBtnHov txt="Cancel" onClick={() => setModal(val => !val)} />
+                            <WhiteBtnHov txt="Cancel" onClick={() =>  setModal(val => !val)} />
                             <RedBtnHov txt="Update" onClick={updateUser}/>
                         </div>
                     </Form>
